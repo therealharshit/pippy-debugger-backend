@@ -7,6 +7,7 @@ A FastAPI server backend that powers the debugging functionality for the Pippy p
 - FastAPI-based RESTful server
 - Integrates with LLMs to analyze Python code
 - `/debug` endpoint for real-time code analysis and tips
+- `/context` endpoint for code contextualization
 
 ## To Run the Server
 
