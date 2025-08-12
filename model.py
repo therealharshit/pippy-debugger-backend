@@ -4,7 +4,7 @@ model = pipeline("text-generation", model="Qwen/Qwen2.5-1.5B-Instruct", device=-
 
 def debug_code(code: str):
     prompt = f"""
-    You are an expert Python developer. Analyze the following Python code and provide helpful debugging suggestions in less than 250 words.
+    You are an expert Python developer. Analyze the following Python code and provide helpful debugging suggestions.
     
     Code:
     ```
@@ -16,6 +16,8 @@ def debug_code(code: str):
     2. Explain *why* each issue might cause problems.
     3. Suggest clear and simple ways to fix or improve the code.
     4. If the code looks fine, mention that too.
+    5. Do not give full corrected code, instead give psuedo code or code snippets.
+    6. Generate response in LESS THAN 300 WORDS.
 
     Be concise and beginner-friendly.
 
