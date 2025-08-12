@@ -2,8 +2,9 @@ import os
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from dotenv import load_dotenv
-from app.prompts.prompts import CODE_DEBUG_PROMPT, CODE_CONTEXT_PROMPT
+from app.prompts.prompts import CODE_DEBUG_PROMPT, CODE_CONTEXT_PROMPT, KIDS_DEBUG_PROMPT, KIDS_CONTEXT_PROMPT
 
 load_dotenv()
 os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY")
@@ -11,25 +12,28 @@ os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY")
 os.environ["LANGCHAIN_TRACING_V2"]="true"
 os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 
-model = init_chat_model("gemma-3-12b-it", model_provider="google_genai")
+model = init_chat_model("gemma-3-27b-it", model_provider="google_genai")
+output_parser = StrOutputParser()
 
 def debug_code(code: str):
-    prompt = ChatPromptTemplate.from_template(CODE_DEBUG_PROMPT)
+    debug_prompt = ChatPromptTemplate.from_template(CODE_DEBUG_PROMPT)
+    kids_prompt = ChatPromptTemplate.from_template(KIDS_DEBUG_PROMPT)
     
-    chain = prompt|model
+    chain = debug_prompt|model|output_parser|kids_prompt|model|output_parser
     output = chain.invoke({"code": code})
     
-    response = output.content
+    response = output
     
     return response
 
 
 def get_context(code: str):
-    prompt = ChatPromptTemplate.from_template(CODE_CONTEXT_PROMPT)
+    context_prompt = ChatPromptTemplate.from_template(CODE_CONTEXT_PROMPT)
+    kids_prompt = ChatPromptTemplate.from_template(KIDS_CONTEXT_PROMPT)
     
-    chain = prompt|model
+    chain = context_prompt|model|output_parser|kids_prompt|model|output_parser
     output = chain.invoke({"code": code})
 
-    response = output.content
+    response = output
     
     return response
