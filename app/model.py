@@ -8,9 +8,6 @@ from app.prompts.prompts import CODE_DEBUG_PROMPT, CODE_CONTEXT_PROMPT, KIDS_DEB
 
 load_dotenv()
 os.environ["GOOGLE_API_KEY"]=os.getenv("GOOGLE_API_KEY")
-## Langmith tracking
-os.environ["LANGCHAIN_TRACING_V2"]="true"
-os.environ["LANGCHAIN_API_KEY"]=os.getenv("LANGCHAIN_API_KEY")
 
 model = init_chat_model("gemma-3-27b-it", model_provider="google_genai")
 output_parser = StrOutputParser()

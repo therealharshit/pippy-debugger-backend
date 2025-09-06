@@ -4,5 +4,3 @@ langchain-community
 python-dotenv
 fastapi
 uvicorn
-transformers>=4.45.2
-torch>=1.12.1
