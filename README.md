@@ -17,7 +17,7 @@ git clone https://github.com/yourusername/pippy-debugger-backend.git
 cd pippy-debugger-backend
 ```
 ### Set up Environment
-Rename `.env.example` → `.env` and add your `GOOGLE_API_KEY`
+Rename `.example.env` → `.env` and add your `GOOGLE_API_KEY`
 ```env
 GOOGLE_API_KEY = your_api_key_here
 ```
@@ -61,3 +61,7 @@ You'll see a hello message from Pippy-Debugger
 ## License
 
 This project is licensed under the [GNU Affero General Public License v3.0](LICENSE)
+
+## Credits
+
+This project was developed as part of **DMP 2025** by [Harshit Verma](https://github.com/therealharshit).
